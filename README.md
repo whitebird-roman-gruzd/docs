@@ -112,7 +112,7 @@ wbExchangeSdk.setup({
   merchantId: 'xxxx',
   mode: wbExchangeSdk.mode.AuthMode,
 
-  // callback возврщает токены пользователей для взаимодействия с whitebird через API
+  // callback возвращает токены пользователей для взаимодействия с whitebird через API
   // не вернет токены, в случае если пользователь ещё не верифицирован.
   onLogin: ({accessToken, refreshToken, isUserVerified}) => {},
 })
