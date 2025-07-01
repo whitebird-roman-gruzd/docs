@@ -1,3 +1,3 @@
 ## WhiteBird docs
 
-Docs for every product avaialble in seperate folder
+Docs for every product available in separate folder
