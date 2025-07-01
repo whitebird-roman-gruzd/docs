@@ -1,0 +1,62 @@
+# WhiteBird Payment Provider API guide
+
+## Назначение
+
+Фиатный PaymentProvider - система осуществляющая фиатный рассчет с пользователями по поручению WhiteBird.
+
+Партнер может выступать в роли фиатного PaymentProvider для WhiteBird.
+Это означает, что фиатные рассчеты с клиентом выполняет партнёр по поручению криптоплатформы
+
+Для обеспечения работы таких платежей партнер должен иметь возможность принимать платежные поручения на списание средств с пользователя в пользу Whitebird, а также зачислять средства в пользу пользователя с Whitebird.
+
+Для того чтобы поддерживать данный способ платежей партнёр должен интегрировать 1 API запрос.
+
+### PaymentProvider POST запрос
+
+#### Любой https URL с API_KEY для авторизации.
+
+#### Request params:
+- **externalUserId** - string, client id в системе WhiteBird.
+- **externalOperationId** - string, id операции в рамках, которой даём поручение
+- **currency** - int, код валюты по ISO 4217
+- **amount** - int, количество средств для движения в рамках поручения
+- **type** - PaymentType, тип операции
+- **status** - "EXCHANGED" - единтсвенное возможное значение, описывающее характер операции
+
+Request example:
+``` json
+{
+  "externalUserId": "9ee9e9f7-a7ff-4dc4-9804-5d7dd2cf2df5",
+  "externalOperationId": "c2cd82d4-7653-4a0f-a861-f8b1aa45816c",
+  "currency": 933,
+  "amount": 100,
+  "type": "PAYMENT",
+  "status": "EXCHANGED"
+}
+```
+
+#### Response params:
+- **status** - PaymentStatus,
+- **errorMessage** - string, описание ошибки при возникновении
+
+Response example:
+``` json
+{
+  "status": "FAILED",
+  "errorMessage": "Недостаточно средств на балансе"
+}
+```
+
+#### Типы данных
+
+```typescript
+enum PaymentType {
+    PAYMENT = "PAYMENT",            // пополнение баланса пользователя
+    DISBURSEMENT = "DISBURSEMENT"   // списание с баланса пользователя
+}
+
+enum PaymentStatus {
+    SUCCESS = "SUCCESS",    // операция прошла успешно
+    FAILED = "FAILED"       // не удалось совершить операцию, а данном случае ожидаем errorMessage.
+}
+```
