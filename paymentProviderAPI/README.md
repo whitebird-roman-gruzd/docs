@@ -19,7 +19,7 @@
 - **externalUserId** - string, client id в системе WhiteBird.
 - **externalOperationId** - string, id операции в рамках, которой даём поручение
 - **currency** - int, код валюты по ISO 4217
-- **amount** - int, количество средств для движения в рамках поручения
+- **amount** - double, количество средств для движения в рамках поручения
 - **type** - PaymentType, тип операции
 - **status** - "EXCHANGED" - единтсвенное возможное значение, описывающее характер операции
 
