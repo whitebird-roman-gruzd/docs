@@ -11,8 +11,8 @@
 
 ### Разделы:
 - **[Регистрация](#Register-POST-request)**
-- **[Крипто-тест](#Crypto-test-requests)**
-- **[Получение пользовательских токенов(для SDK)](#Generate-request)**
+- **[Крипто-тест(для РБ пользователей)](#Crypto-test-requests)**
+- **[Получение пользовательских токенов(для SDK)](#Generate-tokens-request)**
 
 ### Register POST request
 
@@ -33,12 +33,12 @@
 - **lastName** - string(255), Фамилия латиницей, если имеется в ДУЛ
 
 
-- **residence** - CountryCode, код страны ???
 - **placeOfBirth** - string(unlimit), место рождения
 - **birthDate** - "YYYY-MM-DD", дата рождения
-- **nationality** - CountryCode, национальность
+- **nationality** - CountryCode, национальность по рождению
 
 
+- **residence** - CountryCode, какой страны ДУЛ предоставлен
 - **identityDocType** - DocType, тип ДУЛ из списка
 - **identityDocIssueDate** - "YYYY-MM-DD", дата выдачи ДУЛ
 - **identityDocExpireDate** - "YYYY-MM-DD", срок действия ДУЛ
@@ -62,6 +62,8 @@
 
 ### !! Все данные обязательны !!
 
+#### Response:
+- **clientId** - string(255)
 
 Request examples:
 
@@ -76,10 +78,10 @@ Request examples:
    "patronymic": "Иванович",
    "firstName": "John",
    "lastName": "Doe",
-   "residence": "112",
    "placeOfBirth": "Республика Беларусь, Минск",
    "birthDate": "1994-01-05",
    "nationality": "112",
+   "residence": "112",
    "identityDocType": "3",
    "identityDocIssueDate": "2020-01-02",
    "identityDocExpireDate": "2030-01-02",
@@ -99,17 +101,17 @@ Request examples:
 }
 
 // RU user example
-
 {
    "email":"test.user.testov+15112024@ya.ru",
+   "phone": "-"
    "gender":"жен",
    "firstNameRu":"Джон",
    "lastNameRu":"До",
    "patronymic":"Иванович",
-   "residence":"643",
    "placeOfBirth":"РФ, Еврейская автономная область, г. Биробиджан",
    "birthDate":"1994-05-09",
    "nationality":"643",
+   "residence":"643",
    "identityDocType":"9",
    "identityDocIssueDate":"2020-01-02",
    "identityDocNumber":"9992129425",
@@ -124,16 +126,32 @@ Request examples:
    "agreedWithOffer": true,
    "exchangeInPersonalInterests": true
 }
-
 ```
 
 ### Crypto test requests
 
 >TBC
 
-### Generate request
+### Generate tokens request
 
->TBC
+Запрос для получения клиентских токенов, для передачи в SDK.
+в On/Off ramp API не используется
+
+#### /api/v2/auth/merchant/client/token/generate
+
+#### params:
+- **clientId** - string(255)
+#### response:
+- **accessToken** - string(unlimit)
+- **refreshToken** - string(unlimit)
+
+Request example:
+
+``` json
+{
+   "clientId": "4bf8b62d-f7af-4b12-b9da-351b96858d5b"
+}
+```
 
 #### Типы данных
 
