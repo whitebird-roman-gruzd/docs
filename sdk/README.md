@@ -152,8 +152,6 @@ enum Currency {
 ```
 **cryptoWallet** - string, позволяет предзаполнить поле кошелёк для пользователя.
 
-**disableAddCard** - bool, убирает возможность пользователю добавлять карты через WhiteBird
-
 **showBackButtonOnHomePage** - bool, позволяет показать кнопку "back" на нашем UI и реагировать, с помощью callback onExit, на нажатие кнопки пользователем.
 
 **onExit** - () -> void, callback для исполнения действий по нажатию на "back"
