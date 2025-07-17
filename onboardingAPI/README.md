@@ -9,6 +9,8 @@
 
 В таком случае запрос на регистрацию пользователей в нашей системе является протоколом получения данных о пользователе от "агента по идентификации".
 
+Авторизация запросов происходит через **x-api-key** header. все запросы Backend to Backend
+
 ### Разделы:
 - **[Регистрация](#Register-POST-request)**
 - **[Статус клиента](#Client-status)**
@@ -142,7 +144,20 @@ Request examples:
 
 ### Crypto test requests
 
->TBC
+Крипто-тест должны пройти все пользователи зарегистрированные с документами РБ. Требование регулятора, не можем тут подвинуться. При использовании SDK - тест встроен в SDK.
+Тест простейший на 5 вопросов, получаем с помощью GET crypto-test, затем отправляем ответы пользователя в запрос POST crypto-test.
+
+#### GET /api/v2/kyc/merchant/client/crypto-test?clientId=
+
+#### response:
+- **cryptoTestRequired** - bool, нужно ли пользователю пройти тест
+- **questions** - TestQuestion[], сами вопросы с вариантами ответов
+
+#### POST /api/v2/kyc/merchant/client/crypto-test
+
+#### request:
+- **clientId** - string(255), нужно ли пользователю пройти тест
+- **answers** - object, “questionId”(string): answerId(int).
 
 ### Generate tokens request
 
@@ -184,5 +199,17 @@ enum ClientStatus {
     VERIFIED = "VERIFIED",  // может совершать транзакции
     FROZEN = "FROZEN",      // окончательный статус (дубликат аккаунта)
     ARREST = "ARREST"       // окончательный статус после использования грязной крипты
+}
+
+class TestQuestion {
+    id: string;
+    title: string;
+    answers: TestAnswer[]
+}
+
+class TestAnswer {
+    id: number;
+    title: string;
+    correct: boolean;
 }
 ```
