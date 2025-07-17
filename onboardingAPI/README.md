@@ -11,6 +11,7 @@
 
 ### Разделы:
 - **[Регистрация](#Register-POST-request)**
+- **[Статус клиента](#Client-status)**
 - **[Крипто-тест(для РБ пользователей)](#Crypto-test-requests)**
 - **[Получение пользовательских токенов(для SDK)](#Generate-tokens-request)**
 
@@ -20,7 +21,7 @@
 
 Если в документе удостоверяющем личность нет информации о месте регистрации эту информацию нужно получить из других документах подтверждающих регистрацию пользователя(оплата коммунальных, выписка из банка итп), также допустимо получить эту информацию со слов пользователя.
 
-#### /api/v2/kyc/merchant/client/register
+#### POST /api/v2/kyc/merchant/client/register
 
 #### params:
 - **email** - string(255)
@@ -128,6 +129,17 @@ Request examples:
 }
 ```
 
+### Client status
+
+Запрос для получения текущего статуса клиента, единственный возможный статус для совершения транзакций - VERIFIED
+
+#### POST /api/v2/kyc/merchant/client/status
+
+#### params:
+- **clientId** - string(255)
+#### response:
+- **String** - ClientStatus
+
 ### Crypto test requests
 
 >TBC
@@ -137,21 +149,13 @@ Request examples:
 Запрос для получения клиентских токенов, для передачи в SDK.
 в On/Off ramp API не используется
 
-#### /api/v2/auth/merchant/client/token/generate
+#### POST /api/v2/auth/merchant/client/token/generate
 
 #### params:
 - **clientId** - string(255)
 #### response:
 - **accessToken** - string(unlimit)
 - **refreshToken** - string(unlimit)
-
-Request example:
-
-``` json
-{
-   "clientId": "4bf8b62d-f7af-4b12-b9da-351b96858d5b"
-}
-```
 
 #### Типы данных
 
@@ -172,5 +176,13 @@ enum DocType {
     ForeignBiometricResidencePermitBY = "16", // биометрический вид на жительство РБ иностранного гражданина
     RefugeeBiometricResidencePermitBY = "17", // биометрический вид на жительство РБ лица без гражданства
     Other = "99"                // Иное
+}
+
+enum ClientStatus {
+    CREATED = "CREATED",    // документы для AML не предоставлены
+    PENDING = "PENDING",    // ожидает проверки AML
+    VERIFIED = "VERIFIED",  // может совершать транзакции
+    FROZEN = "FROZEN",      // окончательный статус (дубликат аккаунта)
+    ARREST = "ARREST"       // окончательный статус после использования грязной крипты
 }
 ```
