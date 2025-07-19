@@ -201,13 +201,13 @@ enum ClientStatus {
     ARREST = "ARREST"       // окончательный статус после использования грязной крипты
 }
 
-class TestQuestion {
+interface TestQuestion {
     id: string;
     title: string;
     answers: TestAnswer[]
 }
 
-class TestAnswer {
+interface TestAnswer {
     id: number;
     title: string;
     correct: boolean;
