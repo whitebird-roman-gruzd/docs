@@ -9,6 +9,8 @@
 - **[Providers](#providers-request)**
 - **[Limits](#Limit-request)**
 - **[Quote](#Quote-request)**
+- **[Buy](#buy-request---onramp)**
+- **[Sell](#sell-request---offramp)**
 
 ### Assets request
 
@@ -131,6 +133,44 @@
 ```
 ---
 
+### Buy request - OnRamp
+
+#### POST /api/v2/exchange/merchant/buy
+> Запрос на создание заявки для покупки криптовалюты за фиат. **OnRamp** операция.
+#### params:
+- **clientId** - string(255), registered client id
+- **quoteId** - string(255), ID условий сделки
+- **destinationCryptoAddress** - string(255), крипто-адрес, на который мы отправим криптовалюту(клиент подтверждает, что кошелёк принадлежит ему) 
+
+#### response:
+- **id** - string(255), ID заявки
+- **type** - "BUY", тип ордера
+- **status** - OrderStatus, Статус ордера
+- **fiatPaymentLink** - string, ссылка на 3ds в случае интеграции с картами
+- **creationDate** - string(255), дата создания заявки
+- **modificationDate** - string(255), дата изменения заявки
+- **expiresAtDate** - string(255), дата истечения заявки
+---
+
+### Sell request - OffRamp
+
+#### POST /api/v2/exchange/merchant/sell
+> Запрос на создание заявки для продажи криптовалюты в фиат. **OffRamp** операция.
+#### params:
+- **clientId** - string(255), registered client id
+- **quoteId** - string(255), ID условий сделки
+- **sourceAddress** - **Optional** string(255), крипто-адрес, с которого придёт криптовалюта, чтобы мы заранее могли проверить чистоту кошелька
+ 
+#### response:
+- **id** - string(255), ID заявки
+- **type** - "SELL", тип ордера
+- **status** - OrderStatus, Статус ордера
+- **depositCryptoAddress** - string, крипто-адрес на который клиент должен прислать криптовалюту для обмена
+- **creationDate** - string(255), дата создания заявки
+- **modificationDate** - string(255), дата изменения заявки
+- **expiresAtDate** - string(255), дата истечения заявки
+---
+
 ### Common interfaces
 
 ```typescript
@@ -202,6 +242,10 @@ enum CryptoProtocol {
     Erc = "ERC-20",
     Ton = "TON",
     Trc = "TRC-20",
+}
+
+enum OrderStatus {
+    NEW = "NEW",    // заявка создана
 }
 ```
 
