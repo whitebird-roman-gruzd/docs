@@ -54,7 +54,7 @@ Response example:
 #### Любой https URL с API_KEY для авторизации.
 
 #### Request params:
-- **externalOperationId** - string, id операции в рамках, которой даём поручение
+- **externalOperationId** - string, id операции в рамках, которой даём поручение (order.fiatTransaction.orderIdentity)
 - **status** - "СANCELLED" - единственное возможное значение, описывающее характер операции
 
 Request example:
