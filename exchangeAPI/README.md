@@ -4,6 +4,11 @@
 
 ![ExchangeFlow](exchangeApiFlow.drawio.svg)
 
+## Content:
+- **[Assets](#assets-request)**
+- **[Providers](#providers-request)**
+- **[Limits](#Limit-request)**
+
 ### Assets request
 
 #### POST /api/v2/exchange/merchant/assets
@@ -32,11 +37,12 @@
 > Текущие лимиты клиента по выбранной паре 
 #### params:
 - **clientId** - string(255), registered client id
-- **paymentMethod** - LimitAsset, в какую валюту обмен
+- **paymentMethod** - PaymentProviderId, какой paymentProvider используем
 - **fromAsset** - LimitAsset, из какой валюты обмен
 - **toAsset** - LimitAsset, в какую валюту обмен
 
 #### response:
+- **asset** - LimitAsset, копия  fromAsset
 - **min** - int, минимальное количество входящей валюты для обмена
 - **max** - int, максимальное количество входящей валюты для обмена
 
@@ -67,9 +73,61 @@
     "code": "BYN"
   }
 }
-
 ```
+---
 
+### Quote request
+
+#### POST /api/v2/exchange/merchant/quote
+> Запрос на условия сделки. время жизни условий сделки 30сек, нужно запрашивать постоянно, нельзя создать ордер на обмен с истёкшей квотой. В ответе - условия текущего обмена с детализацией и quoteId  
+#### params:
+- **clientId** - string(255), registered client id
+- **paymentMethod** - PaymentProviderId, какой paymentProvider используем
+- **paymentMethodToken** - string(255), токен карты или любой GUID(для кастомных интеграций)
+- **fromAsset** - QuoteAsset, из какой валюты обмен
+- **toAsset** - QuoteAsset, в какую валюту обмен
+
+#### response:
+- **quoteId** - string(255), **Id условий сделки**, с этим ID создавать запрос на покупку/продажу
+- **fromAsset** - QuoteAsset, рассчитанное количество валюты для обмена
+- **toAsset** - QuoteAsset, рассчитанное количество валюты для обмена
+- **rate** - double, итоговый курс с учётом всех комиссий(сервиса и сети)
+- **plainRate** - double, курс без учёта комиссий
+- **fee** - QuoteFee, комиссии в текущей сделке
+- **expirationDate** - string(255), дата истечения условий сделки (now + 30sec)
+
+#### Пример запросов:
+``` json
+// OnRamp example
+{
+    "clientId": "a03a693e-d6b4-4692-b23d-ccb246392431"
+    "paymentMethod": "TEST"
+    "paymentMethodToken": "a13a693e-c6b4-4692-b23d-cdb246392453"
+    "fromAsset": {
+        "amount": 100,
+        "code": "BYN"
+    },
+    "toAsset": {
+        "code": "USDT",
+        "network": "Ton"
+    }
+}
+
+// OffRamp example
+{
+    "clientId": "a03a693e-d6b4-4692-b23d-ccb246392431"
+    "paymentMethod": "TEST"
+    "paymentMethodToken": "a13a693e-c6b4-4692-b23d-cdb246392453"
+    "fromAsset": {
+        "amount": 100,
+        "code": "USDT",
+        "network": "Ton"
+    },
+    "toAsset": {
+        "code": "USD",
+    }
+}
+```
 ---
 
 ### Common interfaces
@@ -90,6 +148,20 @@ interface CryptoAsset {
 interface LimitAsset {
     code: CurrencyCode;
     network?: CurrencyNetwork;  // должно присутствовать для криптовалюты
+}
+
+interface QuoteAsset {
+    // в запросе передавать в той части из которой надо рассчитать, в ответе придет рассчитанная в обе стороны
+    amount?: double;
+    code: CurrencyCode;
+    network?: CurrencyNetwork;  // должно присутствовать для криптовалюты
+}
+
+interface QuoteFee {
+    total: double;      // комиссия WhiteBird
+    network: double;    // комиссия Crypto за проведение транзакции
+    service: null;      // ???
+    asset: CurrencyCode;// Какая фиатная валюта комиссии
 }
 
 enum CurrencyId {
