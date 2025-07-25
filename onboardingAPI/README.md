@@ -53,7 +53,7 @@
 - **registrationCountry** - CountryCode, страна регистрации
 - **registrationRegion** - string(unlimit), область регистрации
 - **residenceDistrict** - string(unlimit), район регистрации
-- **registrationCity** - string(unlimit), город регистрации
+- **registrationCity** - string(unlimit), город регистрации, обязательно с наименованием
 - **registrationStreet** - string(unlimit), улица регистрации
 - **registrationHouseAndFlat** - string(100), дом, корпус и квартира регистрации
 - **postCode** - string(20), почтовый код места регистрации
@@ -94,7 +94,7 @@ Request examples:
    "registrationCountry": "112",
    "registrationRegion": "Минская область",
    "residenceDistrict": "-",
-   "registrationCity": "Минск",
+   "registrationCity": "г. Минск",
    "registrationStreet": "ул. Криптоманов",
    "registrationHouseAndFlat": "д.30/1 кв.3",
    "postCode": "220000",
