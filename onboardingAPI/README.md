@@ -117,6 +117,7 @@ Request examples:
    "residence":"643",
    "identityDocType":"9",
    "identityDocIssueDate":"2020-01-02",
+   "identityDocExpireDate":"2030-01-02",
    "identityDocNumber":"9992129425",
    "identityDocIssuer":"УМВД России по Еврейской автономной области",
    "registrationCountry":"643",
