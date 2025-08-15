@@ -11,6 +11,7 @@
 - **[Quote](#Quote-request)**
 - **[Buy](#buy-request---onramp)**
 - **[Sell](#sell-request---offramp)**
+- **[Order Status](#order-status-request)**
 
 ### Assets request
 
@@ -171,6 +172,33 @@
 - **expiresAtDate** - string(255), дата истечения заявки
 ---
 
+### Order status request
+
+#### POST /api/v2/exchange/merchant/order
+> Запрос для получения статуса заявки **OnRamp**/**OffRamp**.
+#### params:
+- **orderId** - string(255), registered client id
+
+#### response
+- **id** - string(255), ID заявки
+- **number** - int, номер заявки
+- **status** - OrderStatus, статус текущего ордера
+- **exchangeOperation** - ExchangeOperation, условия текущей заявки
+- **cryptoTransaction** - CryptoTransaction, статус крипто транзакции
+- **fiatTransaction** - FiatTransaction, статус фиатной транзакции
+- **client** - OrderClient, client для текущего ордера
+- **creationDate** - string, UTC date string
+- **modificationDate** - string, UTC date string
+- **expiresAtDate** - string, UTC date string
+- **completionDate** - string, UTC date string
+- **serverDate** - string, UTC date string, внутренняя информация
+- **exchangeType** - "BUY" | "SELL", тип обменной операции
+- **operationType** - "CRYPTO_TO_FIAT" | "FIAT_TO_CRYPTO", тип операции
+- **orderType** - "DEFAULT", ???
+- **resultMessage** - string?, сервисная информация по ордеру
+- **submitByResident** - bool, операция произведена резидентом РБ
+- **promoCodeDetails** - string, информация об использовании промокода для транзакции
+
 ### Common interfaces
 
 ```typescript
@@ -250,6 +278,68 @@ enum OrderStatus {
     EXPIRED = "EXPIRED",        // когда ордер не выполнился за отведенное ему время(например клиент не отправил на крипту)
     COMPLETED = "COMPLETED",    // Ордер завершен успешно
     ERROR = "ERROR"             // ошибка выполнения ордера (для получения дополнительной информации нужно обратиться к поддержке WhiteBird)
+}
+
+interface ExchangeOperation {
+    inputAsset: number;     // количество продаваемого актива
+    outputAsset: number;    // количество приобритаемого актива
+    exchangeFeeAssetInFiat: number; // сумма комиссий сервиса в фиате
+    bonusOutputAsset: number;   // ???
+    plainRatio: number;     // курс обмена до учёта комиссий
+    ratio: number;          // курс обмена после учёта комиссий
+    currencyPair: {
+        fromCurrency: CurrencyCode; // продаваемая валюта
+        toCurrency: CurrencyCode;   // приобретаемая валюта
+    }
+}
+
+interface СryptoTransaction {
+    transactionHash?: string;   // хэш транзакции в blockchain
+    externalCryptoAddress?: string, // криптоадрес клиента на/с которого ушла/пришла крипта
+    internalCryptoAddress: string;  // криптоадрес Whitebird который участвовал в транзакции
+    fromAddress?: string,       // криптоадрес с которого списывалась крипта
+    toAddress?: string,         // криптоадрес на который зачислялась крипта
+    status: СryptoTransactionStatus,
+    currency: CurrencyCode;     // валюта транзакции
+    comment?: string;           // внутренний комментарий
+    fee?: number;               // комиссия сети блокчейн
+    feeNative?: null;           // ???
+    feePaymentEnabledByClient: boolean; // платит ли комиссию крипты клиент 
+    type: СryptoTransactionType;    // Тип проведения крипто операции
+}
+
+interface FiatTransaction {
+    status: FiatTransactionStatus,  // Статус фиатной транзакции
+    paymentToken: string;   // пользовательский карт-токен/счёт/уникальный идентификатор счета проведения транзакции
+    internalToken?: string; // служебная информация
+    orderIdentity: string;  // внутренний id ордера
+    link?: string;          // ссылка на 3ds страницу
+    providerType: PaymentProviderId;    // текущий платёжный провайдер
+    paymentType: string,    // ??? P2P
+    processingBank?: string;// банк проведения платежа(если такой есть)
+    resultMessage?: string; // причина ошибки платежа
+    currency: CurrencyCode; // Валюта транзакции
+    post?: string,          // ???
+    paymentSystem?: PaymentSystemType,  // для карточных интеграций
+}
+
+interface OrderClient {
+    clientId: string;
+}
+
+enum СryptoTransactionStatus {
+    NotFound = "NOT_FOUND", // транзакции в сети блокчейн нет
+    // ???
+}
+
+enum FiatTransactionStatus {
+    New = "NEW",    // фиатная тразакция создана
+    // ???
+}
+
+enum СryptoTransactionType {
+    Auto = "AUTO",  // Транзакция прошла в автоматическом режиме
+    // ???
 }
 ```
 
