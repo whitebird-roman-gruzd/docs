@@ -1,4 +1,4 @@
-# Whitebird API guide
+# WhiteBird API guide
 
 ## Process description
 
@@ -296,7 +296,7 @@ interface ExchangeOperation {
 interface СryptoTransaction {
     transactionHash?: string;   // хэш транзакции в blockchain
     externalCryptoAddress?: string, // криптоадрес клиента на/с которого ушла/пришла крипта
-    internalCryptoAddress: string;  // криптоадрес Whitebird который участвовал в транзакции
+    internalCryptoAddress: string;  // криптоадрес WhiteBird который участвовал в транзакции
     fromAddress?: string,       // криптоадрес с которого списывалась крипта
     toAddress?: string,         // криптоадрес на который зачислялась крипта
     status: СryptoTransactionStatus,

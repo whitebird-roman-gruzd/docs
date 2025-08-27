@@ -1,4 +1,4 @@
-# Whitebird Registration API guide
+# WhiteBird Registration API guide
 
 ## Назначение
 
