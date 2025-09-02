@@ -116,7 +116,9 @@
     "toAsset": {
         "code": "USDT",
         "network": "Ton"
-    }
+    },
+    "destinationCryptoAddress": "0QD1LvlKFvAT2fHxwm2uCxZ9X5EmIWbGLhGMwDDwcQXauCkU",
+    "comment": "12331"
 }
 
 // OffRamp example
