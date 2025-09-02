@@ -90,6 +90,8 @@
 - **paymentMethodToken** - string(255), токен карты или любой GUID(для кастомных интеграций)
 - **fromAsset** - QuoteAsset, из какой валюты обмен
 - **toAsset** - QuoteAsset, в какую валюту обмен
+- **destinationCryptoAddress** - string, **опциональный** параметр для **OnRamp**, позволяет точнее рассчитать комиссию сети, криптоадрес на который мы должны перевести крипту(клиент подтверждает, что кошелёк принадлежит ему)
+- **comment** - string, опциональный **параметр** для **OnRamp** операции на TON.
 
 #### response:
 - **quoteId** - string(255), **Id условий сделки**, с этим ID создавать запрос на покупку/продажу
@@ -141,7 +143,6 @@
 #### params:
 - **clientId** - string(255), registered client id
 - **quoteId** - string(255), ID условий сделки
-- **destinationCryptoAddress** - string(255), крипто-адрес, на который мы отправим криптовалюту(клиент подтверждает, что кошелёк принадлежит ему) 
 
 #### response:
 - **id** - string(255), ID заявки
@@ -301,7 +302,7 @@ interface СryptoTransaction {
     toAddress?: string,         // криптоадрес на который зачислялась крипта
     status: СryptoTransactionStatus,
     currency: CurrencyCode;     // валюта транзакции
-    comment?: string;           // внутренний комментарий
+    comment?: string;           // для сети TON
     fee?: number;               // комиссия сети блокчейн
     feeNative?: null;           // ???
     feePaymentEnabledByClient: boolean; // платит ли комиссию крипты клиент 
