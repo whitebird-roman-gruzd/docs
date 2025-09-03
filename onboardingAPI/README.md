@@ -31,7 +31,7 @@
 - **gender** - Gender, пол
 - **firstNameRu** - string(255), Имя на русском, если имеется в ДУЛ
 - **lastNameRu** - string(255), Фамилия на русском, если имеется в ДУЛ
-- **patronymic** - string(255), Отчество на русском, если имеется в ДУЛ
+- **patronymicRu** - string(255), Отчество на русском, если имеется в ДУЛ
 - **firstName** - string(255), Имя латиницей, если имеется в ДУЛ
 - **lastName** - string(255), Фамилия латиницей, если имеется в ДУЛ
 
@@ -78,7 +78,7 @@ Request examples:
    "gender": "муж",
    "firstNameRu": "Джон",
    "lastNameRu": "До",
-   "patronymic": "Иванович",
+   "patronymicRu": "Иванович",
    "firstName": "John",
    "lastName": "Doe",
    "placeOfBirth": "Республика Беларусь, Минск",
@@ -110,7 +110,7 @@ Request examples:
    "gender":"жен",
    "firstNameRu":"Джон",
    "lastNameRu":"До",
-   "patronymic":"Иванович",
+   "patronymicRu":"Иванович",
    "placeOfBirth":"РФ, Еврейская автономная область, г. Биробиджан",
    "birthDate":"1994-05-09",
    "nationality":"643",
