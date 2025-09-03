@@ -11,7 +11,9 @@ SDK предоставляет возможность взаимодействи
 - AuthMode
 - TokensMode
 
-Демо доступно по ссылке: [SDK Demo](https://sdk.dev.wbdevel.net/v2.0/assets/sdk-demo/index.html)
+#### Презентация
+- Ознакомиться c визуальным флоу можно в [Figma](https://www.figma.com/design/QhTl1W0BEncjvGXRu03UiW/SDK-flow?node-id=0-1&p=f)
+- Демо доступно по ссылке: [SDK Demo](https://sdk.dev.wbdevel.net/v2.0/assets/sdk-demo/index.html)
 (```MerchantId: 4f19017b-0793-4591-94ff-610bb3c4665b```)
 
 Описание каждого режима доступно [ниже](#краткое-описание-режимов) в документации.
