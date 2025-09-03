@@ -131,6 +131,7 @@ enum Currency {
     BTC,
     ETH,
     USDT, // ERC-20
+    USDC, // ERC-20
     TRX,
     USDT_TRC, // TRC-20
     TON,

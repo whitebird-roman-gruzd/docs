@@ -244,6 +244,7 @@ enum CurrencyId {
     BTC = "BTC",
     ETH = "ETH",
     USDT_ERC = "USDT_ERC",
+    USDC_ERC = "USDC_ERC",
     TON = "TON",
     USDT_TON = "USDT_TON",
     TRX = "TRX",
@@ -260,6 +261,7 @@ enum CurrencyCode {
     USDT = "USDT",
     TON = "TON",
     TRX = "TRX",
+    USDC = "USDC",
 }
 
 enum CurrencyNetwork {
