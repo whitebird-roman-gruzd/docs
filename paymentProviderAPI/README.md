@@ -19,6 +19,7 @@
 #### Request params:
 - **externalUserId** - string, client id в системе WhiteBird.
 - **externalOperationId** - string, id операции в рамках, которой даём поручение
+- **paymentMethodToken** - string, optional id платежного средства, необходим если партнер предоставляет несколько платежных средств
 - **currency** - int, код валюты по ISO 4217
 - **amount** - double, количество средств для движения в рамках поручения
 - **type** - PaymentType, тип операции
@@ -29,6 +30,7 @@ Request example:
 {
   "externalUserId": "9ee9e9f7-a7ff-4dc4-9804-5d7dd2cf2df5",
   "externalOperationId": "c2cd82d4-7653-4a0f-a861-f8b1aa45816c",
+  "paymentMethodToken": "4b13260e-e642-438f-ab40-adc6a1edb039",
   "currency": 933,
   "amount": 100,
   "type": "PAYMENT",
