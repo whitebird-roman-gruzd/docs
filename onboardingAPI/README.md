@@ -106,10 +106,12 @@ Request examples:
 // RU user example
 {
    "email":"test.user.testov+15112024@ya.ru",
-   "phone": "-"
+   "phone": "-",
    "gender":"жен",
    "firstNameRu":"Джон",
    "lastNameRu":"До",
+   "firstName": "-",
+   "lastName": "-",
    "patronymicRu":"Иванович",
    "placeOfBirth":"РФ, Еврейская автономная область, г. Биробиджан",
    "birthDate":"1994-05-09",
@@ -126,6 +128,7 @@ Request examples:
    "registrationCity":"п. Николаевка",
    "registrationStreet":"ул. Комсомольская",
    "registrationHouseAndFlat":"д. 23, кв. 30",
+   "postCode": "-",
    "notUSTaxPayer": true,
    "agreedWithOffer": true,
    "exchangeInPersonalInterests": true
