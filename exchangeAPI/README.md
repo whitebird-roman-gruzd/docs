@@ -18,7 +18,7 @@
 #### POST /api/v2/exchange/merchant/assets
 > Доступные для обмена валюты.
 #### params:
-- **clientId** - string(255), registered client id
+- **clientId** - *optional*, string(255), registered client id
 
 #### response:
 - **cryptoAssets** - [`CryptoAsset`](#common-interfaces), доступные криптовалюты
@@ -85,9 +85,9 @@
 #### POST /api/v2/exchange/merchant/quote
 > Запрос на условия сделки. время жизни условий сделки 30сек, нужно запрашивать постоянно, нельзя создать ордер на обмен с истёкшей квотой. В ответе - условия текущего обмена с детализацией и quoteId  
 #### params:
-- **clientId** - string(255), registered client id
-- **paymentMethod** - PaymentProviderId, какой paymentProvider используем
-- **paymentMethodToken** - string(255), токен карты или любой GUID(для кастомных интеграций)
+- **clientId** - *optional*, string(255), registered client id
+- **paymentMethod** - *optional*, PaymentProviderId, какой paymentProvider используем
+- **paymentMethodToken** - *optional*, string(255), токен карты или любой GUID(для кастомных интеграций)
 - **fromAsset** - QuoteAsset, из какой валюты обмен
 - **toAsset** - QuoteAsset, в какую валюту обмен
 - **destinationCryptoAddress** - string, **опциональный** параметр для **OnRamp**, позволяет точнее рассчитать комиссию сети, криптоадрес на который мы должны перевести крипту(клиент подтверждает, что кошелёк принадлежит ему)
@@ -180,7 +180,7 @@
 #### POST /api/v2/exchange/merchant/order
 > Запрос для получения статуса заявки **OnRamp**/**OffRamp**.
 #### params:
-- **orderId** - string(255), registered client id
+- **orderId** - string(255), order ID
 
 #### response
 - **id** - string(255), ID заявки
