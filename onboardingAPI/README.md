@@ -53,9 +53,9 @@
 - **registrationCountry** - CountryCode, страна регистрации
 - **registrationRegion** - string(unlimit), область регистрации
 - **residenceDistrict** - string(unlimit), район регистрации
-- **registrationCity** - string(unlimit), город регистрации, обязательно с наименованием
-- **registrationStreet** - string(unlimit), улица регистрации
-- **registrationHouseAndFlat** - string(100), дом, корпус и квартира регистрации
+- **registrationCity** - string(unlimit), город регистрации, обязательно с наименованием, "город Минск" или "п. Колядичи" пробелы обязательны!
+- **registrationStreet** - string(unlimit), улица регистрации - в формате "улица Радужная" или "ул. Радужная" пробелы обязательны!
+- **registrationHouseAndFlat** - string(100), дом, корпус и квартира регистрации - "д. 25, к. 1, кв. 22", допустимо "д. 25/1, кв. 22", пробелы обязательны!
 - **postCode** - string(20), почтовый код места регистрации
 
 
