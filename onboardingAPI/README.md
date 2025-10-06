@@ -81,7 +81,7 @@ Request examples:
    "patronymicRu": "Иванович",
    "firstName": "John",
    "lastName": "Doe",
-   "placeOfBirth": "Республика Беларусь, Минск",
+   "placeOfBirth": "Республика Беларусь, г. Минск",
    "birthDate": "1994-01-05",
    "nationality": "112",
    "residence": "112",
