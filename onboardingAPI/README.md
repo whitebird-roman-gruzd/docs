@@ -96,7 +96,7 @@ Request examples:
    "residenceDistrict": "-",
    "registrationCity": "г. Минск",
    "registrationStreet": "ул. Криптоманов",
-   "registrationHouseAndFlat": "д.30/1 кв.3",
+   "registrationHouseAndFlat": "д. 30/1, кв. 3",
    "postCode": "220000",
    "notUSTaxPayer": true,
    "agreedWithOffer": true,
