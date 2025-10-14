@@ -52,7 +52,7 @@
 >данные о месте регистрации могут отличаться в зависимости от страны, заполнить нужно те поля, которые соответствуют формату адреса в стране регистрации пользователя
 - **registrationCountry** - CountryCode, страна регистрации
 - **registrationRegion** - string(unlimit), область регистрации
-- **residenceDistrict** - string(unlimit), район регистрации
+- **registrationDistrict** - string(unlimit), район регистрации
 - **registrationCity** - string(unlimit), город регистрации, обязательно с наименованием, "город Минск" или "п. Колядичи" пробелы обязательны!
 - **registrationStreet** - string(unlimit), улица регистрации - в формате "улица Радужная" или "ул. Радужная" пробелы обязательны!
 - **registrationHouseAndFlat** - string(100), дом, корпус и квартира регистрации - "д. 25, к. 1, кв. 22", допустимо "д. 25/1, кв. 22", пробелы обязательны!
@@ -93,7 +93,7 @@ Request examples:
    "personalNumber": "3029120H059PB9",
    "registrationCountry": "112",
    "registrationRegion": "Минская область",
-   "residenceDistrict": "-",
+   "registrationDistrict": "-",
    "registrationCity": "г. Минск",
    "registrationStreet": "ул. Криптоманов",
    "registrationHouseAndFlat": "д. 30/1, кв. 3",
@@ -124,7 +124,7 @@ Request examples:
    "identityDocIssuer":"УМВД России по Еврейской автономной области",
    "registrationCountry":"643",
    "registrationRegion":"Еврейская автономная область",
-   "residenceDistrict":"Смидовичский район",
+   "registrationDistrict":"Смидовичский район",
    "registrationCity":"п. Николаевка",
    "registrationStreet":"ул. Комсомольская",
    "registrationHouseAndFlat":"д. 23, кв. 30",
