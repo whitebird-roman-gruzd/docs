@@ -177,7 +177,7 @@
 
 ### Order status request
 
-#### POST /api/v2/exchange/merchant/order
+#### GET /api/v2/exchange/merchant/order
 > Запрос для получения статуса заявки **OnRamp**/**OffRamp**.
 #### params:
 - **orderId** - string(255), order ID
