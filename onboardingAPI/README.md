@@ -62,6 +62,7 @@
 - **notUSTaxPayer** - bool, не является налогоплательщиком США
 - **agreedWithOffer** - bool, согласие пользователя с офертой WhiteBird
 - **exchangeInPersonalInterests** - bool, подтверждение обмена в личных интересах
+- **externalClientId** - string, Optional - id клиента в системе партнёра.
 
 ### !! Все данные обязательны !!
 
