@@ -140,10 +140,9 @@
 
 ### Buy request - OnRamp
 
-#### POST /api/v2/exchange/merchant/buy
+#### GET /api/v2/exchange/merchant/buy
 > Запрос на создание заявки для покупки криптовалюты за фиат. **OnRamp** операция.
 #### params:
-- **clientId** - string(255), registered client id
 - **quoteId** - string(255), ID условий сделки
 
 #### response:
@@ -161,7 +160,6 @@
 #### POST /api/v2/exchange/merchant/sell
 > Запрос на создание заявки для продажи криптовалюты в фиат. **OffRamp** операция.
 #### params:
-- **clientId** - string(255), registered client id
 - **quoteId** - string(255), ID условий сделки
 - **sourceAddress** - **Optional** string(255), крипто-адрес, с которого придёт криптовалюта, чтобы мы заранее могли проверить чистоту кошелька
  
