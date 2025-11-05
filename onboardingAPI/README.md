@@ -173,6 +173,7 @@ Request examples:
 
 #### params:
 - **clientId** - string(255)
+- **externalClientId** - string, Optional - id клиента в системе партнёра.
 #### response:
 - **accessToken** - string(unlimit)
 - **refreshToken** - string(unlimit)
