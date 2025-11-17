@@ -200,11 +200,11 @@ enum DocType {
 }
 
 enum ClientStatus {
-    CREATED = "CREATED",    // документы для AML не предоставлены
-    PENDING = "PENDING",    // ожидает проверки AML
-    VERIFIED = "VERIFIED",  // может совершать транзакции
-    FROZEN = "FROZEN",      // окончательный статус (дубликат аккаунта)
-    ARREST = "ARREST"       // окончательный статус после использования грязной крипты
+    NOT_VERIFIED = "NOT_VERIFIED",    // документы для AML не предоставлены
+    PENDING = "PENDING",              // ожидает проверки AML
+    VERIFIED = "VERIFIED",            // может совершать транзакции
+    FROZEN = "FROZEN",                // окончательный статус (дубликат аккаунта)
+    ARREST = "ARREST"                 // окончательный статус после использования грязной крипты
 }
 
 interface TestQuestion {
