@@ -312,18 +312,18 @@ interface СryptoTransaction {
 }
 
 interface FiatTransaction {
-    status: FiatTransactionStatus,  // Статус фиатной транзакции
-    paymentToken: string;   // пользовательский карт-токен/счёт/уникальный идентификатор счета проведения транзакции
-    internalToken?: string; // служебная информация
-    orderIdentity: string;  // внутренний id ордера
-    link?: string;          // ссылка на 3ds страницу
-    providerType: PaymentProviderId;    // текущий платёжный провайдер
-    paymentType: string,    // ??? P2P
-    processingBank?: string;// банк проведения платежа(если такой есть)
-    resultMessage?: string; // причина ошибки платежа
-    currency: CurrencyCode; // Валюта транзакции
-    post?: string,          // ???
-    paymentSystem?: PaymentSystemType,  // для карточных интеграций
+    status: FiatTransactionStatus,    // статус фиатной транзакции
+    paymentToken: string;             // пользовательский карт-токен/счёт/уникальный идентификатор счета проведения транзакции
+    internalToken?: string;           // служебная информация
+    orderIdentity: string;            // внутренний id ордера
+    link?: string;                    // ссылка на 3ds страницу
+    providerType: PaymentProviderId;  // текущий платёжный провайдер
+    paymentType: string,              // ??? P2P
+    processingBank?: string;          // банк проведения платежа(если такой есть)
+    resultMessage?: string;           // причина ошибки платежа
+    currency: CurrencyCode;           // валюта транзакции
+    post?: string,                    // маска карты
+    paymentSystem?: PaymentSystemType,// для карточных интеграций
 }
 
 interface OrderClient {
@@ -331,18 +331,38 @@ interface OrderClient {
 }
 
 enum СryptoTransactionStatus {
-    NotFound = "NOT_FOUND", // транзакции в сети блокчейн нет
-    // ???
+    New = "NEW",                      // крипто тразакция создана
+    NotFound = "NOT_FOUND",           // транзакции в сети блокчейн нет
+    Rejected = "REJECTED",            // клиент отменил ордер
+    Timeout = "TIMEOUT",              // за отведенное время не поступила крипта
+    InvaldAmount = "INVALID_AMOUNT",  // поученное количество крипты отличается от количества указанного в ордере
+    Error = "ERROR",                  // ошибка при выполнении ордера
+    AmlError = "AML_ERROR",           // ошибка при проверке крипто адреса
+    AmlBlocked = "AML_BLOCKED",       // амл заблокировал ордер 
+    Arrest = "ARREST",                // крпто адрес не прошел проверку амл 
+    Submitting = "SUBMITTING",        // транзакция создается в сети блокчейн
+    Submitted = "SUBMITTED",          // транзакция создана в сети блокчейн
+    Pending = "PENDING",              // транзакция запущена в сети блокчейн
+    Selected = "SELECTED",            // крипто транзакция найдена в сети блокчейн
+    Confirmed = "CONFIRMED",          // крипто транзакция подтверждена
 }
 
 enum FiatTransactionStatus {
-    New = "NEW",    // фиатная тразакция создана
-    // ???
+    New = "NEW",                      // фиатная тразакция создана
+    Rejected = "REJECTED",            // клиент отменил ордер
+    Timeout = "TIMEOUT",              // за отведенное время не поступил фиат
+    InvaldAmount = "INVALID_AMOUNT",  // поученное количество фиата отличается от количества указанного в ордере
+    Error = "ERROR",                  // ошибка при выполнении ордера
+    Declined = "DECLINED",            // ошибка при выполнении фиатной транзакции 
+    AmlBlocked = "AML_BLOCKED",       // амл заблокировал ордер 
+    Pending = "PENDING",              // фиатная транзакция запущена
+    Processing = "PROCESSING",        // фиатная транзакция выполняется 
+    Approved = "APPROVED",            // фиатная транзакция подтверждена
 }
 
 enum СryptoTransactionType {
-    Auto = "AUTO",  // Транзакция прошла в автоматическом режиме
-    // ???
+    Auto = "AUTO",     // Транзакция прошла в автоматическом режиме
+    Manual = "MANUAL"  // Транзакция прошла в ручном режиме
 }
 ```
 
@@ -388,6 +408,7 @@ enum PaymentProviderId {
     MTS = "MTS",
     CA = "CA",
     STATUSBANK = "STATUSBANK",
+    VTB = "VTB",
     // или кастомные
 }
 
