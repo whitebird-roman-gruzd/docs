@@ -178,6 +178,21 @@ Request examples:
 - **accessToken** - string(unlimit)
 - **refreshToken** - string(unlimit)
 
+### Simple register request
+
+Запрос для регистрации пользователя, но без KYC данных.
+
+#### POST /api/v2/auth/merchant/client/register
+
+#### Params:
+- **email** - string(255)
+- **phone** - string(255), Optional телефон клиента
+- **merchantId** - string(255)
+- **externalClientId** - string, Optional - id клиента в системе партнёра.
+
+#### Response:
+- **clientId** - string(255)
+
 #### Типы данных
 
 ```typescript
