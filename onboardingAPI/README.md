@@ -175,7 +175,7 @@ Request examples:
 - **clientId** - string(255)
 - **externalClientId** - string, Optional - id клиента в системе партнёра.
 #### response:
-- **accessToken** - string(unlimit)
+- **token** - string(unlimit)
 - **refreshToken** - string(unlimit)
 
 ### Simple register request
@@ -191,7 +191,7 @@ Request examples:
 - **externalClientId** - string, Optional - id клиента в системе партнёра.
 
 #### Response:
-- **clientId** - string(255)
+- **id** - string(255), registered clientId
 
 #### Типы данных
 
