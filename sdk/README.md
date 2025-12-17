@@ -123,6 +123,19 @@ wbExchangeSdk.setup({
 **currencyTo** - строки из _Currency enum_. позволяет предзаполнить поле валюты, на которую будет совершаться обмен.
 
 **disableCurrencyTo** - bool, позволяет отключить возможность редактирования валюты To, а также блокирует поле криптокошелька если оно было передано.
+
+**cryptoWallet** - string, позволяет предзаполнить поле кошелёк для пользователя.
+
+**showBackButtonOnHomePage** - bool, позволяет показать кнопку "back" на нашем UI и реагировать, с помощью callback onExit, на нажатие кнопки пользователем.
+
+**onExit** - () -> void, callback для исполнения действий по нажатию на "back"
+
+**onOrderCreated** - ({orderId, internalCryptoAddress}) -> void, callback для уведомления мерчанта о создании ордера.
+
+
+Желательно после окончания работы с SDK вызвать ```wbExchangeSdk.cleanup()``` 
+
+
 ```typescript
 let currencyFrom: Currency;
 let currencyTo: Currency;
@@ -143,15 +156,3 @@ enum Currency {
     WBP, // TRC-20
 }
 ```
-**cryptoWallet** - string, позволяет предзаполнить поле кошелёк для пользователя.
-
-**showBackButtonOnHomePage** - bool, позволяет показать кнопку "back" на нашем UI и реагировать, с помощью callback onExit, на нажатие кнопки пользователем.
-
-**onExit** - () -> void, callback для исполнения действий по нажатию на "back"
-
-**onOrderCreated** - ({orderId, internalCryptoAddress}) -> void, callback для уведомления мерчанта о создании ордера.
-
-
-Желательно после окончания работы с SDK вызвать ```wbExchangeSdk.cleanup()``` 
-
-
