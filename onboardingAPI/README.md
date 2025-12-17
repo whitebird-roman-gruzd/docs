@@ -44,10 +44,10 @@
 - **residence** - CountryCode, какой страны ДУЛ предоставлен
 - **identityDocType** - DocType, тип ДУЛ из списка
 - **identityDocIssueDate** - "YYYY-MM-DD", дата выдачи ДУЛ
-- **identityDocExpireDate** - "YYYY-MM-DD", срок действия ДУЛ
+- **identityDocExpireDate** - "YYYY-MM-DD", срок действия ДУЛ, если есть в ДУЛ
 - **identityDocNumber** - string(50), серия и номер ДУЛ
 - **identityDocIssuer** - string(unlimit), орган выдавший ДУЛ
-- **personalNumber** - string(50), идентификационный номер из ДУЛ
+- **personalNumber** - string(50), идентификационный номер из ДУЛ, если есть в ДУЛ
 
 >данные о месте регистрации могут отличаться в зависимости от страны, заполнить нужно те поля, которые соответствуют формату адреса в стране регистрации пользователя
 - **registrationCountry** - CountryCode, страна регистрации
@@ -56,7 +56,7 @@
 - **registrationCity** - string(unlimit), город регистрации, обязательно с наименованием, "город Минск" или "п. Колядичи" пробелы обязательны!
 - **registrationStreet** - string(unlimit), улица регистрации - в формате "улица Радужная" или "ул. Радужная" пробелы обязательны!
 - **registrationHouseAndFlat** - string(100), дом, корпус и квартира регистрации - "д. 25, к. 1, кв. 22", допустимо "д. 25/1, кв. 22", пробелы обязательны!
-- **postCode** - string(20), почтовый код места регистрации
+- **postCode** - Optional, string(20), почтовый код места регистрации
 
 
 - **notUSTaxPayer** - bool, не является налогоплательщиком США
