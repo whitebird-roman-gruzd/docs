@@ -382,6 +382,7 @@ interface PaymentProviderConfig {
 interface PaymentProviderCommission {
     buyCommission: string;  // percentage
     sellCommision: string;  // percentage
+    direction: "SDK" | "EXCHANGE" | "ACCOUNTING"; // Type of the exchange operation
     bank?: string;  // опциональный, если комисси зависят от банка эмитента
 }
 
