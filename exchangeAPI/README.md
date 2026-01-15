@@ -29,7 +29,7 @@
 #### POST /api/v2/exchange/merchant/payment/provider
 > Список доступных способов оплаты с их характеристиками
 #### params:
-- **clientId** - string(255), registered client id
+- **clientId** - Optional, string(255), registered client id
 
 #### response:
 - **Array** - [PaymentProvider[]](#paymentprovider-interfaces)
