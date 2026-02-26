@@ -8,7 +8,7 @@
 
 ### **Russian payment** providers
 
-- `CARUSELL` - only RUB `OnRamp` Russian SBP mechanism
+- `CARUSELL` - only RUB `OnRamp/OffRamp` Russian SBP mechanism, [instructions](./CARUSELL.md)
 - `MTS` - only RUB - `OffRamp` **(card bind required)**
 - `MTS` - only RUB - `OnRamp` - via bank mobile app
 - `VTB` - only RUB - `OffRamp`
