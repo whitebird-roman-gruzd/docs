@@ -16,8 +16,7 @@ Request Body:
 ```
 {
     "fiatAsset": "RUB",
-    "orderType": "SELL",
-    "direction": "SDK"
+    "orderType": "BUY"
 }
 ```
 Response:
@@ -82,8 +81,7 @@ Request Body:
 ```
 {
     "fiatAsset": "RUB",
-    "orderType": "SELL",
-    "direction": "SDK"
+    "orderType": "SELL"
 }
 ```
 Response:
